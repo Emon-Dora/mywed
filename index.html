@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>照片存储平台 - 上传你的精彩瞬间</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://unpkg.com/lucide@latest/dist/umd/lucide.js" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1 class="main-title">照片存储平台</h1>
+            <p class="subtitle">安全、快速、便捷的照片管理解决方案</p>
+        </header>
+
+        <!-- Upload Section -->
+        <section class="upload-section">
+            <div class="upload-container">
+                <h2 class="upload-title">上传你的精彩瞬间</h2>
+                
+                <!-- Drag & Drop Area -->
+                <div class="drag-drop-area" id="dragDropArea">
+                    <div class="upload-icon">
+                        <i data-lucide="upload-cloud" size="48"></i>
+                    </div>
+                    <p class="upload-text">拖拽照片到此处，或</p>
+                    <button class="upload-button" id="uploadButton">
+                        <i data-lucide="plus" size="20"></i>
+                        选择文件
+                    </button>
+                    <p class="upload-hint">支持 JPG、PNG、WebP、GIF 格式，单个文件最大 10MB</p>
+                </div>
+                
+                <!-- Hidden File Input -->
+                <input type="file" id="fileInput" accept="image/*" multiple style="display: none;">
+            </div>
+        </section>
+
+        <!-- Photos Gallery Section -->
+        <section class="gallery-section">
+            <div class="gallery-header">
+                <h3 class="gallery-title">我的照片</h3>
+                <div class="gallery-stats" id="galleryStats">
+                    共 <span id="photoCount">0</span> 张照片
+                </div>
+            </div>
+            
+            <!-- Photos Grid -->
+            <div class="photos-grid" id="photosGrid">
+                <!-- Photos will be dynamically inserted here -->
+            </div>
+            
+            <!-- Empty State -->
+            <div class="empty-state" id="emptyState">
+                <div class="empty-icon">
+                    <i data-lucide="image" size="64"></i>
+                </div>
+                <h4 class="empty-title">还没有照片</h4>
+                <p class="empty-text">上传你的第一张照片，开始你的照片库</p>
+            </div>
+        </section>
+    </div>
+
+    <!-- Preview Modal -->
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal-content">
+            <button class="modal-close" id="modalClose">
+                <i data-lucide="x" size="24"></i>
+            </button>
+            <div class="modal-body">
+                <img class="modal-image" id="modalImage" src="" alt="">
+                <div class="modal-info">
+                    <h4 class="modal-title" id="modalTitle"></h4>
+                    <div class="modal-details">
+                        <p class="modal-detail">大小: <span id="modalSize"></span></p>
+                        <p class="modal-detail">类型: <span id="modalType"></span></p>
+                        <p class="modal-detail">上传时间: <span id="modalDate"></span></p>
+                    </div>
+                    <div class="modal-actions">
+                        <button class="modal-button download-button" id="downloadButton">
+                            <i data-lucide="download" size="16"></i>
+                            下载
+                        </button>
+                        <button class="modal-button delete-button" id="deleteButton">
+                            <i data-lucide="trash-2" size="16"></i>
+                            删除
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">
+        <div class="toast-content">
+            <i data-lucide="check-circle" size="20"></i>
+            <span class="toast-text" id="toastText"></span>
+        </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-spinner">
+            <div class="spinner"></div>
+            <p class="loading-text">正在处理...</p>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
